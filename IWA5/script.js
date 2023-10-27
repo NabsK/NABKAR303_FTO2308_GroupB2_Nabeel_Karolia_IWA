@@ -3,7 +3,7 @@ const BANNED_WARNING =
   "Unfortunately we do not ship to your country of residence";
 const NONE_SELECTED = 0;
 
-const location = "NAM";
+const location = "RSA";
 let shipping = null;
 let currency = "$";
 customers = 1;
@@ -24,11 +24,12 @@ let shirts = 150 * NONE_SELECTED;
 let batteries = 35 * 2;
 let pens = 5 * NONE_SELECTED;
 
-if (shoes + batteries + pens + shirts > 1000 && location === ("RSA" || "NAM")) {
-  if (location === "NAM" && customers < 2) {
-    if (location === "RSA") {
-      shipping = 0 || calcShipping;
-    }
+if (
+  shoes + batteries + pens + shirts + toys > 1000 &&
+  location === ("RSA" || "NAM")
+) {
+  if (location === "NAM" || (location === "RSA" && customers < 2)) {
+    shipping = 0 || calcShipping;
   }
 }
 
@@ -41,5 +42,5 @@ location === "NK"
   : console.log(
       "price",
       currency,
-      shoes + batteries + pens + shirts + shipping
+      shoes + batteries + pens + shirts + toys + shipping
     );
