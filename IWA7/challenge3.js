@@ -10,37 +10,17 @@ const divider = "----------------------------------";
 
 // Only change below this line
 
-const owed =
-  "R" +
-  (parseFloat(leoBalance * -1) + parseFloat(sarahBalance * -1)).toFixed(2);
-const leo =
-  leoName +
-  " " +
-  leoSurname +
-  "\b\b\b" +
-  "Owed " +
-  "R " +
-  parseFloat(leoBalance * -1);
-const sarah =
-  sarahName +
-  "\b\b\b" +
-  sarahSurname +
-  " Owed " +
-  "R " +
-  parseFloat(sarahBalance * -1);
-const total = "Total amount owed: ";
-const result =
-  leo +
-  "\n" +
-  sarah +
-  "\n" +
-  divider +
-  "\n" +
-  " " +
-  total +
-  " " +
-  owed +
-  "\n" +
-  divider;
+const owed = (-leoBalance + -sarahBalance).toFixed(2);
+const leo = `\n${leoName} ${leoSurname.trim()} (Owed: R ${(-leoBalance).toFixed(
+  2
+)})\n`;
+const sarah = `${sarahName.trim()} ${sarahSurname} (Owed: R ${(-sarahBalance).toFixed(
+  2
+)}) \n`;
 
+const total = `  Total amount owed: R ${
+  owed.slice(0, 2) + " " + owed.slice(2)
+}\n`;
+
+const result = leo + sarah + divider + "\n" + total + divider;
 console.log(result);
