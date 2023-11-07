@@ -30,5 +30,3 @@ biscuits3.innerHTML = root3.dataset.biscuits;
 donuts3.innerHTML = root3.dataset.donuts;
 pancakes3.innerHTML = root3.dataset.pancakes;
 status3.innerHTML = root3.dataset.delivered ? "Delivered" : "Pending";
-
-document.querySelector(".elgg-foot input");
