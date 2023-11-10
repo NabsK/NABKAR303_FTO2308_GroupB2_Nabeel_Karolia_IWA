@@ -55,33 +55,34 @@ const futureId = 9;
 
 console.log(holidays.futureId || `ID ${futureId} not created yet`);
 
-const copied = { ...holidays[6] };
-copied.date = new Date(`25 December ${currentYear}`);
-copied.name = "X-mas Day";
+const copied = { ...holidays[christmas] };
 
-const isEarlier = copied.date < holidays[6].date;
+copied.name = "X-mas Day";
+const correctDate = new Date(copied.date);
+correctDate.setUTCHours(0);
+correctDate.setUTCMinutes(0);
+
+const isEarlier = correctDate < holidays[6].date;
 console.log("New date is earlier:", isEarlier);
 
-if (isEarlier) Object.assign(holidays[6], copied);
+if (isEarlier) copied.date = correctDate;
 
-if (holidays[6].id == copied.id) {
-  console.log("ID change: false");
-} else {
-  console.log(holidays[6].id);
-}
-if (holidays[6].name != copied.name) {
-  console.log("Name change: false");
-} else {
-  console.log("Name change:", holidays[6].name);
-}
-if (holidays[6].date != copied.date) {
-  console.log("Date change: false");
-} else {
-  console.log("Date change:", holidays[6].date);
-}
+console.log(
+  "ID change:",
+  holidays[christmas].id !== copied.id ? copied.id : false
+);
+console.log(
+  "Name change:",
+  holidays[christmas].name !== copied.name ? copied.name : false
+);
+console.log(
+  "Date change:",
+  holidays[christmas].date.getTime() !== copied.date.getTime()
+    ? copied.date
+    : false
+);
 
-holidays[0].date = new Date(`16 December ${currentYear}`);
-
+holidays[0].date = new Date(holidays[0].date);
 const firstHolidayTimestamp = Math.min(
   holidays[0].date.getTime(),
   holidays[1].date.getTime(),
@@ -111,8 +112,8 @@ const firstMonth = new Date(firstHolidayTimestamp).getMonth() + 1;
 const lastDay = new Date(lastHolidayTimestamp).getDate();
 const lastMonth = new Date(lastHolidayTimestamp).getMonth() + 1;
 
-console.log(`${firstDay}/${firstMonth}/${currentYear}`);
-console.log(`${lastDay}/${lastMonth}/${currentYear}`);
+console.log(`${firstDay} / ${firstMonth} / ${currentYear}`);
+console.log(`${lastDay} / ${lastMonth} / ${currentYear}`);
 
-const randomHoliday = holidays[Math.round(Math.random() * 10)];
+const randomHoliday = holidays[Math.floor(Math.random() * 10)];
 console.log(randomHoliday);
