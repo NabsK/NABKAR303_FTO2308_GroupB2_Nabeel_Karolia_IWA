@@ -16,15 +16,14 @@ const result = [];
 
 const extractBiggest = () => {
   if (first[first.length - 1] > second[second.length - 1]) {
-    return first;
+    result.push(first[first.length - 1]);
+  } else if (second[second.length - 1] > first[first.length - 1]) {
+    result.push(second[second.length - 1]);
+  } else if (third[third.length - 1] > second[second.length - 1]) {
+    result.push(third[third.length - 1]);
   }
-
-  if (third[third.length - 1] < 1) {
-    return second;
-  }
-
-  return third;
 };
+// how to change prettier line width
 
 // Only edit above
 
